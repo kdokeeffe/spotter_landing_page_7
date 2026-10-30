@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Spotter Sheet is a fictional concept: a phone-first tool designed to help volunteer-run gymnastics clubs see what each coach can do and get them ready for the next level.">
+<meta name="theme-color" content="#12355b">
+<title>Spotter Sheet – find out what your coaches can do (fictional concept)</title>
+<style>
+:root{
+  --ink:#111827; --muted:#4b5563; --line:#d1d5db; --bg:#f3f5f8; --card:#ffffff;
+  --navy:#12355b; --teal:#0e7c7b;
+  --ok:#166534; --ok-bg:#dcfce7; --warn:#92400e; --warn-bg:#fef3c7; --bad:#991b1b; --bad-bg:#fee2e2; --info:#1e3a8a; --info-bg:#dbeafe;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0; background:var(--bg); color:var(--ink); font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:860px; margin:0 auto; padding:0 16px}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+.skip{position:absolute; left:8px; top:-60px; z-index:50; background:#fff; color:var(--navy); padding:10px 14px; border-radius:8px; font-weight:700}
+.skip:focus{top:8px}
+a{color:#0b5cad}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #2563eb; outline-offset:2px}
+
+.concept{background:var(--warn-bg); color:var(--warn); border-bottom:2px solid #f59e0b; font-size:.9rem; font-weight:600; padding:8px 16px; text-align:center}
+
+:root{--pat-dark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%2312355b' stroke-opacity='0.075' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='14' y='34' width='74' height='9' rx='4.5'/%3E%3Cpath d='M28 43l-7 20M74 43l7 20'/%3E%3Ccircle cx='156' cy='38' r='15'/%3E%3Cpath d='M168 50c10 12 22 4 30 14s14 2 20 8'/%3E%3Cpath d='M214 18l4.6 9.6 10.4 1.4-7.6 7.3 1.9 10.4-9.3-5-9.3 5 1.9-10.4-7.6-7.3 10.4-1.4z'/%3E%3Ccircle cx='52' cy='168' r='5'/%3E%3Cpath d='M52 163V138M52 138l-15-30M52 138l15-30M52 150l-9 9M52 150l9 9'/%3E%3Cpath d='M139 112l9 16 9-16'/%3E%3Ccircle cx='148' cy='138' r='11'/%3E%3Cpath d='M148 133v10'/%3E%3Cpath d='M196 100v24M222 100v24'/%3E%3Ccircle cx='196' cy='134' r='9'/%3E%3Ccircle cx='222' cy='134' r='9'/%3E%3Cpath d='M118 214h68M118 226h68M126 214v22M178 214v22M126 226v10M178 226v10'/%3E%3Ccircle cx='34' cy='222' r='4.5'/%3E%3Cpath d='M34 217l20 12M54 229l22 2M34 217l-14 14M54 229l-4-16'/%3E%3Ccircle cx='96' cy='96' r='2.5'/%3E%3Ccircle cx='100' cy='182' r='2.5'/%3E%3Ccircle cx='232' cy='196' r='2.5'/%3E%3Cpath d='M232 70v10M227 75h10M110 150v10M105 155h10'/%3E%3C/g%3E%3C/svg%3E"); --pat-light:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='14' y='34' width='74' height='9' rx='4.5'/%3E%3Cpath d='M28 43l-7 20M74 43l7 20'/%3E%3Ccircle cx='156' cy='38' r='15'/%3E%3Cpath d='M168 50c10 12 22 4 30 14s14 2 20 8'/%3E%3Cpath d='M214 18l4.6 9.6 10.4 1.4-7.6 7.3 1.9 10.4-9.3-5-9.3 5 1.9-10.4-7.6-7.3 10.4-1.4z'/%3E%3Ccircle cx='52' cy='168' r='5'/%3E%3Cpath d='M52 163V138M52 138l-15-30M52 138l15-30M52 150l-9 9M52 150l9 9'/%3E%3Cpath d='M139 112l9 16 9-16'/%3E%3Ccircle cx='148' cy='138' r='11'/%3E%3Cpath d='M148 133v10'/%3E%3Cpath d='M196 100v24M222 100v24'/%3E%3Ccircle cx='196' cy='134' r='9'/%3E%3Ccircle cx='222' cy='134' r='9'/%3E%3Cpath d='M118 214h68M118 226h68M126 214v22M178 214v22M126 226v10M178 226v10'/%3E%3Ccircle cx='34' cy='222' r='4.5'/%3E%3Cpath d='M34 217l20 12M54 229l22 2M34 217l-14 14M54 229l-4-16'/%3E%3Ccircle cx='96' cy='96' r='2.5'/%3E%3Ccircle cx='100' cy='182' r='2.5'/%3E%3Ccircle cx='232' cy='196' r='2.5'/%3E%3Cpath d='M232 70v10M227 75h10M110 150v10M105 155h10'/%3E%3C/g%3E%3C/svg%3E")}
+body{background:var(--bg) var(--pat-dark) repeat; background-size:260px 260px}
+.hero,.join{position:relative; overflow:hidden}
+.hero::before,.join::before{content:""; position:absolute; inset:0; background:var(--pat-light) repeat; background-size:260px 260px; pointer-events:none}
+.hero>.wrap,.join>*{position:relative}
+.hero .wrap.wide{max-width:1040px}
+.hero-grid{display:grid; gap:26px; align-items:center}
+@media (min-width:860px){.hero-grid{grid-template-columns:1.05fr .95fr; gap:40px}}
+
+/* ---------- AI images (every one carries a visible label) ---------- */
+.fig{margin:0 0 16px}
+.imgwrap{position:relative}
+.fig img{display:block; width:100%; height:auto; border-radius:18px; border:1px solid var(--line); background:#dbe7f3}
+.badge{position:absolute; left:10px; top:10px; background:rgba(18,53,91,.92); color:#fff; font-size:.75rem; font-weight:700; letter-spacing:.02em; padding:4px 10px; border-radius:99px; pointer-events:none}
+.fig figcaption{margin-top:8px; font-size:.85rem; color:var(--muted)}
+.fig.onhero img{border:2px solid rgba(255,255,255,.55); box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.fig.onhero figcaption{color:#d3e2f3}
+.fig.side{max-width:600px}
+.split{display:grid; gap:18px; align-items:center}
+.split>.fig{margin:0}
+@media (min-width:820px){ .split{grid-template-columns:1.05fr .95fr; gap:34px} .split.rev>.fig{order:-1} }
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(160deg,#12355b 0%,#0e4a6b 100%); color:#fff; padding:36px 0 40px}
+.eyebrow{margin:0 0 10px; font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:#bfdbfe}
+.hero h1{margin:0 0 14px; font-size:clamp(1.7rem,6.2vw,2.5rem); line-height:1.18; letter-spacing:-.01em}
+.lead{margin:0 0 22px; font-size:1.08rem; color:#e5edf7; max-width:34em}
+.ctas{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+.btn{display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 22px; border-radius:14px; font-weight:700; font-size:1.02rem; text-decoration:none; border:2px solid transparent; cursor:pointer; font-family:inherit}
+.btn.primary{background:#fff; color:var(--navy)}
+.btn.ghost{background:transparent; color:#fff; border-color:#fff}
+.btn.solid{background:var(--teal); color:#fff}
+.btn.primary:hover,.btn.solid:hover{filter:brightness(.95)}
+.hero small{display:block; margin-top:14px; color:#cfe0f2; font-size:.88rem}
+
+/* ---------- sections ---------- */
+section{padding:34px 0 6px}
+h2{margin:0 0 8px; font-size:1.45rem; line-height:1.25}
+h3{margin:18px 0 6px; font-size:1.08rem}
+p{margin:0 0 12px}
+.sub{color:var(--muted); margin:0 0 16px}
+.card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; margin:0 0 14px}
+.card h3:first-child{margin-top:0}
+.tag{display:inline-block; font-size:.78rem; font-weight:700; padding:2px 10px; border-radius:99px; background:var(--warn-bg); color:var(--warn); vertical-align:middle}
+.tag.ok{background:var(--ok-bg); color:var(--ok)}
+.tag.info{background:var(--info-bg); color:var(--info)}
+dl{margin:0}
+dt{font-weight:700; margin-top:12px}
+dt:first-child{margin-top:0}
+dd{margin:2px 0 0; color:#1f2937}
+ul.users{margin:8px 0 0; padding-left:22px}
+ul.users li{margin:0 0 8px}
+.seg{font-weight:700; padding:1px 8px; border-radius:8px; white-space:nowrap}
+.seg-p{background:var(--warn-bg); color:#7c2d12}
+.seg-c{background:var(--ok-bg); color:var(--ok)}
+.seg-a{background:var(--info-bg); color:var(--info)}
+blockquote{margin:14px 0 0; padding:12px 14px; border-left:5px solid var(--teal); background:#eef7f7; border-radius:0 12px 12px 0; font-size:1.05rem}
+blockquote p{margin:0}
+.note{font-size:.9rem; color:var(--muted); margin:6px 0 0}
+.assume{background:var(--warn-bg); color:#7c2d12; border:1px solid #f59e0b; border-radius:12px; padding:10px 14px; margin:0 0 14px}
+ol.req,ol.steps{margin:0 0 14px; padding-left:24px}
+ol.req li,ol.steps li{margin:0 0 8px; padding-left:4px}
+ul.plain{margin:0 0 12px; padding-left:22px}
+ul.plain li{margin:0 0 8px}
+
+/* ---------- alternatives ---------- */
+.alt h3 a{font-weight:700}
+.alt p{margin:0 0 8px}
+.alt .gap{color:#374151}
+
+/* ---------- table (stacks on phones) ---------- */
+table{width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; font-size:.95rem}
+caption{text-align:left; font-weight:700; padding:0 0 8px}
+th,td{padding:10px 12px; text-align:left; vertical-align:top; border-bottom:1px solid #e5e7eb}
+thead th{background:#eaf0f8; color:var(--navy); font-size:.9rem}
+tbody tr:last-child td{border-bottom:0}
+@media (max-width:620px){
+  thead{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
+  table,tbody,tr,td{display:block; width:100%}
+  tr{border-bottom:1px solid var(--line); padding:8px 0}
+  tr:last-child{border-bottom:0}
+  td{border:0; padding:4px 12px}
+  td::before{content:attr(data-label); display:block; font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
+}
+
+/* ---------- phone preview ---------- */
+.phone{max-width:300px; margin:16px 0; background:#fff; border:2px solid var(--navy); border-radius:22px; padding:14px; box-shadow:0 6px 18px rgba(18,53,91,.12)}
+.ph-top{font-size:.75rem; font-weight:700; color:var(--warn); background:var(--warn-bg); border-radius:8px; padding:3px 8px; display:inline-block; margin-bottom:8px}
+.ph-name{font-weight:700; margin-bottom:6px}
+.ph-row{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:7px 0; border-top:1px solid #eef0f3; font-size:.95rem}
+.ph-next{margin-top:8px; padding:8px 10px; background:#eef7f7; border-left:4px solid var(--teal); border-radius:0 8px 8px 0; font-size:.92rem}
+.chip{display:inline-flex; align-items:center; padding:2px 10px; border-radius:99px; font-weight:700; font-size:.8rem; white-space:nowrap}
+.chip.ok{background:var(--ok-bg); color:var(--ok)} .chip.warn{background:var(--warn-bg); color:var(--warn)} .chip.bad{background:var(--bad-bg); color:var(--bad)}
+
+/* ---------- form ---------- */
+.join{background:var(--navy); color:#fff; border-radius:20px; padding:22px 18px; margin:34px 0 10px}
+.join h2{color:#fff}
+.join p{color:#e5edf7}
+label{display:block; font-weight:700; margin:14px 0 6px}
+input[type=email]{width:100%; min-height:52px; padding:0 14px; border:2px solid #fff; border-radius:12px; font:inherit; color:var(--ink); background:#fff}
+.join .btn{margin-top:14px; width:100%}
+[hidden]{display:none!important}
+body.lock{overflow:hidden}
+.ovl{position:fixed; inset:0; background:rgba(17,24,39,.62); z-index:90}
+.dlg{position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:100; width:calc(100% - 32px); max-width:440px; background:#fff; color:var(--ink); border-radius:18px; border-top:6px solid var(--teal); padding:22px 20px 20px; box-shadow:0 18px 50px rgba(0,0,0,.4)}
+.dlg:focus{outline:none}
+.dlg p{margin:0 0 16px; font-size:1.1rem; font-weight:600; line-height:1.45}
+.dlg .btn{width:100%}
+
+footer{padding:26px 0 48px; color:var(--muted); font-size:.92rem}
+footer h2{font-size:1.1rem; color:var(--ink)}
+footer ul{padding-left:20px; margin:0 0 12px}
+footer li{margin:0 0 6px}
+@media (min-width:700px){ .wrap{padding:0 24px} .hero{padding:56px 0 60px} }
+</style>
+</head>
+<body>
+<span class="lnk skip" data-k="main">Skip to the content</span>
+<div class="concept" role="note">Fictional concept for a coursework project. Not a real product or company. Every person, quote and example shown here, and in the demo, is invented.</div>
+
+<header class="hero" id="top">
+  <div class="wrap wide hero-grid">
+   <div class="hero-text">
+    <p class="eyebrow">A concept for volunteer-run youth gymnastics clubs in Ireland</p>
+    <h1>Find out what your coaches can do, and how to get them ready for the next level.</h1>
+    <p class="lead">The Spotter Sheet concept keeps each coach’s safeguarding, vetting status, first aid and coach tier by date, warns before anything lapses, and shows every teenage gymnast-coach their next step. Parents and children can use the same tool to follow progress and ask for the next challenge.</p>
+    <div class="ctas">
+      <span class="lnk btn primary" data-k="join">Join the waiting list</span>
+      <span class="lnk btn ghost" data-k="demo">Try the demo</span>
+    </div>
+    <small>The demo opens in this tab and uses invented sample people only.</small>
+   </div>
+   <span class="pic" data-img="hero" data-variant="onhero"></span>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<div class="wrap">
+
+  <section id="problem" aria-labelledby="h-problem">
+    <h2 id="h-problem">Who is our solution aimed at?</h2>
+    <span class="pic" data-img="coaches" data-variant="side"></span>
+    <div class="card">
+      <dl>
+        <dt>The segment</dt>
+        <dd>The club this concept imagines: a small, volunteer-run gymnastics club in Ireland with several age groups, from about 4 years old up to competitive teenagers, where some coaches are teenage gymnasts who coach while still training themselves. This is the assumed starting point, not a survey of real clubs.</dd>
+        <dt>Who decides and pays</dt>
+        <dd>Assumed to be the club committee, for example the chair or the treasurer.</dd>
+        <dt>Who uses it every day</dt>
+        <dd>
+          <ul class="users">
+            <li><strong class="seg seg-p">Parents &amp; children</strong> can track the child’s progress.</li>
+            <li><strong class="seg seg-c">Gymnast coaches</strong> see their own profile and group, and can make updates and process changes.</li>
+            <li>The <strong class="seg seg-a">club admin</strong> (for example the head coach or the children’s officer) keeps the records.</li>
+          </ul>
+        </dd>
+      </dl>
+      <h3>The problem, as one volunteer might put it <span class="tag">Invented quote</span></h3>
+      <blockquote><p>“I have three fifteen-year-olds who could help with the Tots, but I can’t tell which of them is actually ready.”</p></blockquote>
+      <p class="note">Invented for this concept to show the problem. It is not from a real person.</p>
+    </div>
+  </section>
+
+  <section id="needs" aria-labelledby="h-needs">
+    <div class="split">
+      <div>
+        <h2 id="h-needs">What a solution must do</h2>
+        <p class="sub">Six short requirements. You can look for each one in the demo.</p>
+        <ol class="req">
+          <li>Show each coach’s safeguarding, vetting status, first aid and coach tier, with dates, on one screen.</li>
+          <li>Warn automatically from the dates: amber 60 days before a date, red once it has passed (60 days is a sample setting).</li>
+          <li>Show which groups each coach meets the club’s requirements for, and the next step that would unlock another group.</li>
+          <li>Let a coach submit or renew a certificate and ask for a training, with the club admin deciding.</li>
+          <li>Let parents and children follow a child’s progress and ask the club for the next challenge, and let coaches update progress and recommend a group move, with the club admin deciding.</li>
+          <li>Work on a phone, and keep only names, progress, statuses and dates, never ID documents or vetting disclosures.</li>
+        </ol>
+      </div>
+      <span class="pic" data-img="phone" data-variant="side"></span>
+    </div>
+  </section>
+
+  <section id="today" aria-labelledby="h-today">
+    <h2 id="h-today">How clubs cope today, and what already exists</h2>
+    <p class="assume"><strong>Assumption, not research:</strong> I expect small clubs to keep this in spreadsheets, paper and group chats, with one volunteer chasing people by message. I have not surveyed any club, and I would confirm this with real volunteers before building anything.</p>
+    <p>Two real tools already do part of the job. The page for each was read on <span class="chk"></span>.</p>
+
+    <div class="card alt">
+      <h3><span class="lnk" data-k="clearcheck">ClearCheck</span> <span class="tag info">Checked <span class="chk"></span></span></h3>
+      <p><strong>What it does:</strong> compliance tracking for Irish sports clubs. A dashboard of who is compliant, expiring or missing, one-click reminders, guided Garda vetting steps, and requirements mapped to roles such as coach or committee member. Its page says it is used by GAA, rugby and soccer clubs.</p>
+      <p class="gap"><strong>Not mentioned in the parts of the page that were read:</strong> gymnastics, age groups, or a path for a young coach to move up.</p>
+    </div>
+
+    <div class="card alt">
+      <h3><span class="lnk" data-k="outcoach">Outcoach</span> <span class="tag info">Checked <span class="chk"></span></span></h3>
+      <p><strong>What it does:</strong> gymnastics club management. Classes and terms, payments, coach ratios, messaging parents, and gymnast skill goals and sign-offs that parents can see.</p>
+      <p class="gap"><strong>Not mentioned in the parts of the page that were read:</strong> tracking of coaches’ vetting or safeguarding dates.</p>
+    </div>
+
+    <p>Each site may say more on pages that were not read. Other tools exist, so Spotter Sheet is not claiming to be the first date tracker. The idea it tests is joining the two halves: coach credentials checked against each age group, plus a visible next step for a teenager who is both a gymnast and a coach.</p>
+  </section>
+
+  <section id="solution" aria-labelledby="h-solution">
+    <h2 id="h-solution">What Spotter Sheet is</h2>
+    <p>A phone-first web app, part tracker and part approvals portal. It has three views: <strong>Child/Parent</strong>, <strong>Gymnast Coach</strong> and <strong>Club Admin</strong>.</p>
+    <h3>How it works</h3>
+    <ol class="steps">
+      <li>In a real version, the club would enter each person’s dates and set what each age group needs. The demo has these already set up as invented samples.</li>
+      <li>The app works out each date’s status, which groups each coach meets the requirements for, and the next step.</li>
+      <li>Coaches ask for a certificate, a training or a level, and children and parents ask for the next challenge. The coach or the club admin approves or declines.</li>
+    </ol>
+    <span class="pic" data-img="admin" data-variant="side"></span>
+    <div class="card">
+      <h3>Why it tracks a status date, not a verdict</h3>
+      <p><span class="lnk" data-k="gi">Gymnastics Ireland’s vetting policy</span> says anyone whose role has ongoing contact with its young members must complete Garda e-Vetting. <span class="lnk" data-k="si">Sport Ireland’s guidance</span> says each governing body is responsible for how it runs vetting, and points readers to their own governing body’s procedures for re-vetting. So the demo only records a date and compares dates with invented sample requirements. It is not a vetting or compliance check, and the club stays responsible for who works with children.</p>
+      <p class="note">Both sources were read on <span class="chk"></span>. The intervals in the demo are invented samples, not Gymnastics Ireland policy.</p>
+    </div>
+  </section>
+
+  <section id="fit" aria-labelledby="h-fit">
+    <h2 id="h-fit">Does it meet the requirements?</h2>
+    <table>
+      <caption class="sr">Requirements, how the demo meets each one, and its status</caption>
+      <thead><tr><th scope="col">Requirement</th><th scope="col">How the demo meets it</th><th scope="col">Status</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Requirement">1. Credentials and dates on one screen</td><td data-label="How the demo meets it">The coach profile lists safeguarding, vetting status, first aid and coach tier, each with its date.</td><td data-label="Status"><span class="tag ok">In the demo</span></td></tr>
+        <tr><td data-label="Requirement">2. Automatic warnings</td><td data-label="How the demo meets it">Amber and red are worked out from each date and the current date. The cog lets you move the date forward to watch them change.</td><td data-label="Status"><span class="tag ok">In the demo</span></td></tr>
+        <tr><td data-label="Requirement">3. Groups and the next step</td><td data-label="How the demo meets it">Each coach sees which groups they meet the sample requirements for, and a numbered next step towards the next one.</td><td data-label="Status"><span class="tag ok">In the demo</span></td></tr>
+        <tr><td data-label="Requirement">4. Certificates and trainings</td><td data-label="How the demo meets it">In “Ask the club” a coach submits or renews a certificate with a completion date, or requests a training. The club admin approves or declines.</td><td data-label="Status"><span class="tag ok">In the demo</span></td></tr>
+        <tr><td data-label="Requirement">5. Progress, challenges and group moves</td><td data-label="How the demo meets it">Parents and children see a child’s level and skills and can ask for the next challenge (in the demo, a review for the next level). Other requests are planned. A coach updates skills and recommends a group move. The club admin decides.</td><td data-label="Status"><span class="tag info">Partly in the demo</span></td></tr>
+        <tr><td data-label="Requirement">6. Phone use, dates only</td><td data-label="How the demo meets it">Large buttons, and routine updates are taps or drop-down choices. There are no text boxes, only one date picker, and there is no upload or ID field anywhere.</td><td data-label="Status"><span class="tag ok">In the demo</span></td></tr>
+      </tbody>
+    </table>
+    <h3>Planned, not in the demo</h3>
+    <ul class="plain">
+      <li>Real log-ins for each person, so people only see what their role allows.</li>
+      <li>The club entering its own people and dates and setting what each age group needs. The demo uses invented sample data and rules.</li>
+      <li>Reminders sent by email or message.</li>
+      <li>Uploading and checking real certificates.</li>
+      <li>Other requests from parents and children, beyond a review for the next level.</li>
+      <li>Follow-up on re-vetting as set by the governing body.</li>
+      <li>A data protection assessment before any real use, because real children’s records are involved.</li>
+    </ul>
+  </section>
+
+  <section id="demo" aria-labelledby="h-demo">
+    <h2 id="h-demo">Try the demo</h2>
+    <p>One tap opens a working demo with 12 invented children and 7 invented gymnast-coaches. Things to try:</p>
+    <ul class="plain">
+      <li>In <strong>Child/Parent</strong>, look at one child’s progress.</li>
+      <li>In <strong>Gymnast Coach</strong>, open “Ask the club” and submit a certificate renewal.</li>
+      <li>In <strong>Club Admin</strong>, open Requests and approve it.</li>
+      <li>Tap the cog and move the date forward 90 days to watch dates turn amber, then red.</li>
+    </ul>
+    <div class="phone" role="img" aria-label="Mock-up based on the demo’s coach card, using sample data">
+      <span class="ph-top">Sample data</span>
+      <div class="ph-name">Sample coach</div>
+      <div class="ph-row"><span>Safeguarding</span><span class="chip ok">✓ Valid</span></div>
+      <div class="ph-row"><span>Vetting status</span><span class="chip warn">⚠ Due soon</span></div>
+      <div class="ph-row"><span>First aid</span><span class="chip bad">✕ Expired</span></div>
+      <div class="ph-next">Next step: renew first aid</div>
+    </div>
+    <p class="note">Mock-up based on the demo’s coach card, not a screenshot. The demo saves changes only in your own browser and sends nothing anywhere.</p>
+    <p><span class="lnk btn solid" data-k="demo">Try the demo</span></p>
+  </section>
+
+  <section id="floor" aria-labelledby="h-floor">
+    <div class="split rev">
+      <div>
+        <h2 id="h-floor">Built for the gym floor</h2>
+        <p>These are aims, not measured results: less chasing, fewer surprises, and a clear next step for every coach, kept up to date by busy volunteers on a phone.</p>
+        <ul class="plain">
+          <li><strong>Quick updates where the work happens.</strong> Most things are a tap or two, so records can be updated quickly in the gym.</li>
+          <li><strong>Clear for everyone.</strong> Each role gets a view made for its job: a parent follows their child, a coach sees their group, and the club admin sees the whole club.</li>
+          <li><strong>Easy to correct.</strong> Most changes can be undone straight away from the confirmation message, and every confirmation has an OK button.</li>
+          <li><strong>No guessing what is real.</strong> A sample-data banner stays at the top of every demo screen, so it is clear these are not real records.</li>
+          <li><strong>Made for a small screen.</strong> Large buttons and short lines are meant to keep it readable on a phone.</li>
+        </ul>
+      </div>
+      <span class="pic" data-img="corner" data-variant="side"></span>
+    </div>
+  </section>
+
+  <section id="money" aria-labelledby="h-money">
+    <h2 id="h-money">How it would be paid for</h2>
+    <p class="assume"><strong>Assumption, not tested with any club:</strong> an annual club subscription of €240, about €20 a month.</p>
+    <p>The reasoning is that a volunteer committee can approve a small, fixed cost without a long discussion. The benefit it would have to earn is time saved by the person who keeps the records, and I have not measured that. A sponsor or a club-support grant would be other options to test.</p>
+  </section>
+
+  <section id="test" aria-labelledby="h-test">
+    <h2 id="h-test">What happened when someone else tried it</h2>
+    <div class="card" id="testBox"></div>
+  </section>
+
+  <section class="join" id="join" aria-labelledby="h-join">
+    <h2 id="h-join">Join the waiting list</h2>
+    <p>This is a concept page. The email box is optional and is never read. Nothing is sent or stored.</p>
+    <form id="joinForm" novalidate>
+      <label for="email">Your email (optional)</label>
+      <input type="email" id="email" name="email" autocomplete="email">
+      <button type="submit" class="btn primary">Join the waiting list</button>
+    </form>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>About this page</h2>
+    <ul>
+      <li>Spotter Sheet is a fictional concept made for a university module. It is not a company and has no customers.</li>
+      <li>There are no testimonials, customer counts or ratings on this page, because there are none. The only quote is labelled as invented.</li>
+      <li>The rules in the demo (levels, skills, groups, review intervals, tier ages) are invented samples, not Gymnastics Ireland policy. The tool compares dates and progress with those samples. It is not a vetting or compliance check, and the club stays responsible for who works with children.</li>
+      <li>Other products are named in text only. No logos are used.</li>
+      <li>All five images on this page were generated with AI and are labelled “AI-generated image”. Two are illustrations of invented, faceless characters. Three are realistic-style images of invented scenes, with no children and no visible faces. They are not photographs, and none is a picture of a real person. The faint icons in the background are drawn for this page.</li>
+      <li>Built with generative AI assistance.</li>
+    </ul>
+    <h2>Sources, read on <span class="chk"></span></h2>
+    <ul>
+      <li><span class="lnk" data-k="clearcheck">ClearCheck</span></li>
+      <li><span class="lnk" data-k="outcoach">Outcoach, gymnastics clubs page</span></li>
+      <li><span class="lnk" data-k="gi">Gymnastics Ireland, Garda Vetting Policy and Procedure (E-Vetting), July 2025</span></li>
+      <li><span class="lnk" data-k="si">Sport Ireland, Garda Vetting safeguarding snippet, December 2024</span></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="ovl" id="msgOverlay" hidden></div>
+<div class="dlg" id="msg" role="alertdialog" aria-modal="true" aria-labelledby="msgText" tabindex="-1" hidden>
+  <p id="msgText">Thank you for your interest! This is a demo page only, no information has been sent.</p>
+  <button type="button" class="btn solid" id="msgOk">OK</button>
+</div>
+
+<noscript><div class="concept">This page uses JavaScript for its links and the form. Please turn it on to follow the links.</div></noscript>
+
+<script>
+(function(){
+'use strict';
+
+/* ======================= EDIT THESE (and nothing else) =======================
+   DEMO_URL  : the full address of the published demo (the github.io link, not the github.com repository link).
+   CHECKED   : the date you opened ClearCheck, Outcoach and the two sources and confirmed the wording.
+   TEST_NOTE : fill in all five fields after a real person who did not build the demo has tried it.
+               Until every field is filled the page says it has not been tested yet. Do not invent results.
+   IMG_DIR   : the folder the five .jpg files are uploaded to; use '' if they sit next to index.html. */
+const DEMO_URL='https://kdokeeffe.github.io/spotter-demo-7-1-a/';
+const CHECKED='30 Oct 2026';
+const TEST_NOTE={
+  tester:'A family member',
+  device:'an iPhone and a laptop',
+  tried:'Played around with the demo, trying different options.',
+  broke:'The demo felt too broad, and the first screen did not give the impression that it was for attendees of the gymnastics classes.',
+  changed:'Made the option to select different sample users less visible and less distracting, so that the purpose of that part of the demo is clearer. Also reworded some of the landing page to be more immediate.'
+};
+const IMG_DIR='images/';
+/* ============================================================================ */
+
+const BADGE='AI-generated image';
+const IMAGES={
+  hero:{file:'hero-gym.jpg',alt:'Realistic-style image: an adult volunteer coach in a teal tracksuit, seen from behind, holds a tablet in a bright gymnastics hall with navy and teal mats and a wooden balance beam in the foreground.',cap:'An invented scene. AI-generated image, not a photograph of a real place or person.',eager:true},
+  coaches:{file:'coaches.jpg',alt:'Illustration: a coach in a teal tracksuit gently supports a young gymnast who is walking along a low beam, while two more children wait on the mat.',cap:'A coach supporting a young gymnast. AI-generated illustration of invented characters.'},
+  phone:{file:'phone-beam.jpg',alt:'Realistic-style image: a hand holds a smartphone in front of a wooden balance beam in a gym with navy mats. The screen shows only abstract coloured cards.',cap:'A phone with an invented, abstract screen. AI-generated image, not a photograph.'},
+  admin:{file:'club-admin.jpg',alt:'Illustration: three volunteer club administrators in a gym office, one with a tablet, one with a clipboard and one pointing at a wall planner of coloured cards.',cap:'Club administrators planning the week. AI-generated illustration of invented characters.'},
+  corner:{file:'gym-corner.jpg',alt:'Realistic-style image: the corner of an empty gymnastics hall with a folded navy mat, a bowl of chalk, wooden rings, a clipboard, a tablet and a teal water bottle in warm window light.',cap:'An invented gym corner with nobody in it. AI-generated image, not a photograph.'}
+};
+
+const LINKS={
+  main:{u:'#main'}, join:{u:'#join'}, demo:{u:DEMO_URL},
+  clearcheck:{u:'https://clearcheck.ie/',ext:1},
+  outcoach:{u:'https://outcoach.io/outcoach-for-gymnastics-clubs/',ext:1},
+  gi:{u:'https://gymnasticsireland.s3-assets.com/downloads/GI-Garda-Vetting-Policy-Procedure-July-2025.pdf',ext:1},
+  si:{u:'https://www.sportireland.ie/sites/default/files/media/document/2024-12/Garda%20Vetting%20Snippet%20December%202024.pdf',ext:1}
+};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* Links are built here, not written as anchor tags in the page, so copying this file through chat or e-mail cannot strip them. */
+document.querySelectorAll('.lnk').forEach(el=>{
+  const L=LINKS[el.dataset.k]; if(!L) return;
+  const a=document.createElement('a');
+  a.className=el.className.replace(/\blnk\b/,'').trim();
+  a.href=L.u; a.dataset.k=el.dataset.k; a.innerHTML=el.innerHTML;
+  if(L.ext){ a.target='_blank'; a.rel='noopener noreferrer'; a.insertAdjacentHTML('beforeend','<span class="sr"> (opens in a new tab)</span>'); }
+  el.replaceWith(a);
+});
+document.querySelectorAll('.chk').forEach(el=>{ el.textContent=CHECKED; });
+
+/* Images: built here. Each one carries a visible "AI-generated image" label. If a file is missing the figure removes itself. */
+document.querySelectorAll('.pic').forEach(ph=>{
+  const I=IMAGES[ph.dataset.img]; if(!I) return;
+  const fig=document.createElement('figure'); fig.className='fig '+(ph.dataset.variant||'');
+  const wrap=document.createElement('div'); wrap.className='imgwrap';
+  const img=document.createElement('img');
+  img.src=IMG_DIR+I.file; img.alt=I.alt; img.width=1200; img.height=800; img.decoding='async';
+  img.loading=I.eager?'eager':'lazy';
+  img.addEventListener('error',()=>fig.remove());
+  const badge=document.createElement('span'); badge.className='badge'; badge.textContent=BADGE;
+  const cap=document.createElement('figcaption'); cap.textContent=I.cap;
+  wrap.appendChild(img); wrap.appendChild(badge); fig.appendChild(wrap); fig.appendChild(cap); ph.replaceWith(fig);
+});
+
+/* Test note: shown only when every field has been filled in with a real result. */
+(function(){
+  const T=TEST_NOTE, box=document.getElementById('testBox');
+  const filled=['tester','device','tried','broke','changed'].every(k=>T[k]&&String(T[k]).trim());
+  if(!filled){ box.innerHTML='<p><span class="tag">Not yet tested</span></p><p>This has not been tried by another person yet. The result will be added here: who tried it, what they tried, what broke or confused them, and what I changed.</p>'; return; }
+  box.innerHTML='<dl><dt>Who tried it</dt><dd>'+esc(T.tester)+' ('+esc(T.device)+')</dd><dt>What they tried</dt><dd>'+esc(T.tried)+'</dd><dt>What broke or confused them</dt><dd>'+esc(T.broke)+'</dd><dt>What I changed</dt><dd>'+esc(T.changed)+'</dd></dl>';
+})();
+
+/* Waiting-list form: every click answers with the same message and an OK button. It reads, sends and stores nothing. */
+(function(){
+  const f=document.getElementById('joinForm'), box=document.getElementById('msg'), ovl=document.getElementById('msgOverlay'), ok=document.getElementById('msgOk');
+  const joinBtn=f.querySelector('button');
+  const bg=[...document.querySelectorAll('.concept,header,main,footer')];
+  function openMsg(){ ovl.hidden=false; box.hidden=false; document.body.classList.add('lock'); bg.forEach(e=>{ e.inert=true; }); ok.focus(); }
+  function closeMsg(){ box.hidden=true; ovl.hidden=true; document.body.classList.remove('lock'); bg.forEach(e=>{ e.inert=false; }); f.reset(); joinBtn.focus(); }
+  f.addEventListener('submit',e=>{ e.preventDefault(); openMsg(); });
+  ok.addEventListener('click',closeMsg);
+  ovl.addEventListener('click',closeMsg);
+  document.addEventListener('keydown',e=>{
+    if(box.hidden) return;
+    if(e.key==='Escape'){ e.preventDefault(); closeMsg(); }
+    else if(e.key==='Tab'){ e.preventDefault(); ok.focus(); }
+  });
+})();
+})();
+</script>
+</body>
+</html>
